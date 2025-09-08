@@ -18,7 +18,7 @@
 <body>
 
 <header class="sticky-top nav-wrap">
-  <nav class="navbar navbar-expand-lg bg-white">
+  <nav class="navbar navbar-expand-lg bg-white navbar-light">
     <div class="container">
       <!-- Brand -->
       <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
@@ -370,18 +370,19 @@
   // Year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Smooth-scroll for anchor links with header offset
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
+  // Smooth-scroll for anchor links with dynamic header height
+  const header = document.querySelector('header');
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
       const id = a.getAttribute('href');
-      if(id && id.length>1){
+      if (id && id.length > 1) {
         e.preventDefault();
         const target = document.querySelector(id);
-        const yOffset = -70; // header height
-        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({top:y, behavior:'smooth'});
+        const headerH = header ? header.offsetHeight : 70;
+        const y = target.getBoundingClientRect().top + window.pageYOffset - headerH - 6;
+        window.scrollTo({ top: y, behavior: 'smooth' });
         const nav = document.querySelector('.navbar-collapse');
-        if(nav && nav.classList.contains('show')){ new bootstrap.Collapse(nav).hide(); }
+        if (nav && nav.classList.contains('show')) { new bootstrap.Collapse(nav).hide(); }
       }
     });
   });
