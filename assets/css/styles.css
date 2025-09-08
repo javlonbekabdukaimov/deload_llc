@@ -1,0 +1,232 @@
+/* ===========================
+   Deload Logistics — Global CSS (merged & tuned)
+   =========================== */
+:root{
+  --brand-blue:#0b5cff;
+  --brand-navy:#0a2342;
+  --brand-dark:#1d1f24;
+  --brand-gold:#d4af37;
+  --text:#101317;
+  --muted:#6c7a8a;
+  --bg:#ffffff;
+  --soft:#f7f9fc;
+}
+
+html{ scroll-behavior:smooth; }
+body{
+  font-family: Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text); background:var(--bg);
+}
+
+/* --- Navbar refinement --- */
+/* Navbar shadow (subtle, under sticky header) */
+.nav-wrap{
+  box-shadow:0 6px 22px rgba(10,35,66,.08);
+}
+
+.navbar{ min-height:72px; background:#fff; }
+
+/* Brand logo */
+.navbar-brand .nav-logo{ height:60px; }
+
+/* --- Navbar shadow already set above --- */
+
+/* Add hover + click feedback */
+.navbar-nav.nav-center .nav-link {
+  position: relative;
+  transition: color .2s ease, background .2s ease;
+}
+
+/* Hover underline */
+.navbar-nav.nav-center .nav-link::after {
+  content:"";
+  position:absolute;
+  left:0; bottom:6px;
+  width:0; height:2px;
+  background:var(--brand-blue);
+  transition: width .25s ease;
+  border-radius:2px;
+}
+
+.navbar-nav.nav-center .nav-link:hover::after,
+.navbar-nav.nav-center .nav-link.active::after {
+  width:100%;
+}
+
+.navbar-nav.nav-center .nav-link:hover,
+.navbar-nav.nav-center .nav-link.active{
+  opacity:1; color:var(--brand-navy);
+}
+
+/* Right actions closer to edge */
+.nav-actions{ display:flex; align-items:center; gap:.5rem; }  /* was .75rem */
+.nav-actions .btn{ font-weight:500; font-size:.95rem; }
+
+/* Buttons */
+.btn-outline-brand{
+  border:1px solid var(--brand-blue);
+  background:#fff;
+  color:var(--brand-navy);
+  border-radius:999px;
+  padding:.45rem .9rem;      /* slimmer */
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+.btn-outline-brand:hover{ background:rgba(11,92,255,.06); }
+
+.btn-brand{
+  border:none;
+  border-radius:999px;
+  padding:.5rem 1rem;
+  font-weight:600;           /* lighter */
+  color:#fff;
+  background:linear-gradient(180deg,#3e86ff,#0b5cff 55%,#0849cc);
+  box-shadow:0 6px 14px rgba(11,92,255,.25);
+}
+.btn-brand:hover{ filter:brightness(.96); color:#fff; }
+
+/* Keep touch size on mobile while keeping your existing rule set */
+@media (max-width:991.98px){
+  .navbar-nav.nav-center .nav-link{
+    padding:.9rem .2rem;         /* vertical still ≥44px, tighter horizontally */
+    min-height:44px;
+  }
+}
+
+/* ---------- Utilities ---------- */
+.btn-rounded{ border-radius:999px; }
+.shadow-soft{ box-shadow:0 10px 24px rgba(0,0,0,.08); }
+.section{ padding:80px 0; }
+.section .section-title{ color:var(--brand-navy); font-weight:800; letter-spacing:.2px; }
+
+/* ===========================
+   HERO — Video or Image
+   =========================== */
+.hero-video-wrap{ position:relative; min-height:88vh; padding:160px 0 140px; overflow:hidden; }
+.hero-video{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  filter:saturate(110%) contrast(108%) brightness(100%);
+}
+.hero-overlay {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(1100px 600px at 20% 35%, rgba(11,92,255,.55), rgba(10,35,66,.75)),
+    linear-gradient(180deg, rgba(10,35,66,.55), rgba(10,35,66,.70));
+  opacity: 0.5;   /* 👈 makes the whole overlay 50% transparent */
+}
+.hero-video-wrap .container{ position:relative; z-index:2; }
+.hero-video-wrap .badge{ background:rgba(255,255,255,.9); color:var(--brand-navy); font-weight:700; }
+.hero-video-wrap h1{ color:#fff; text-shadow:0 6px 26px rgba(0,0,0,.35); letter-spacing:.5px; }
+.hero-video-wrap p{ color:rgba(255,255,255,.85); }
+
+/* Fallback image hero */
+.hero{
+  background: linear-gradient(120deg, rgba(11,92,255,.20), rgba(10,35,66,.25)), url('../images/hero.mp4') center/cover no-repeat;
+  position:relative; min-height:80vh; padding:140px 0 120px;
+}
+.hero .badge{ background:rgba(255,255,255,.9); color:var(--brand-navy); }
+
+/* ---------- Feature cards ---------- */
+.card-feature{ border:0; border-radius:20px; }
+.card-feature .icon-wrap{
+  width:56px; height:56px; border-radius:16px; display:grid; place-items:center;
+  background:var(--soft); color:var(--brand-navy);
+}
+.card-feature h5{ margin-top:12px; }
+
+/* ---------- Services ---------- */
+.service-card{ border:0; border-radius:20px; background:#fff; transition:.2s ease; }
+.service-card:hover{ transform:translateY(-4px); box-shadow:0 16px 34px rgba(0,0,0,.08); }
+
+/* Careers section styling */
+.careers-section .career-feature{
+  border:0; border-radius:16px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.careers-section .career-feature:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 30px rgba(0,0,0,.08);
+}
+.careers-section .career-feature .icon-wrap{
+  width:44px; height:44px; border-radius:12px;
+  background:var(--soft); color:var(--brand-blue);
+  display:grid; place-items:center; font-size:1.2rem;
+}
+/* Contact section polish */
+.contact-section .contact-card{ border:0; border-radius:20px; }
+.contact-section .social .social-pill{
+  display:inline-flex; width:40px; height:40px; border-radius:999px;
+  align-items:center; justify-content:center; margin-right:8px;
+  background:#fff; border:1px solid #e8eef7; color:var(--brand-navy);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.contact-section .social .social-pill:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 18px rgba(0,0,0,.08);
+}
+
+/* Map card keeps rounded corners & shadow */
+.map-card{ background:#fff; }
+
+/* Icon inputs */
+.input-icon{ position:relative; }
+.input-icon > i{
+  position:absolute; left:12px; top:50%; transform:translateY(-50%);
+  font-size:1rem; color:#8aa2c0;
+}
+.input-icon-top > i{ top:14px; transform:none; }
+.input-icon .form-control,
+.input-icon .form-select{
+  padding-left:2.2rem; border-radius:12px;
+}
+
+/* Responsive spacing */
+@media (max-width: 991.98px){
+  .contact-section .contact-card{ margin-bottom:0; }
+}
+
+
+/* ---------- Footer ---------- */
+.footer{ background:var(--brand-dark); color:#cfd6e4; }
+.footer a{ color:#e7edf8; }
+.footer .social a{
+  display:inline-flex; width:40px; height:40px; border-radius:50%;
+  align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.2); margin-right:8px;
+}
+
+/* ---------- Privacy Modal ---------- */
+.modal-content{ border-radius:16px; }
+
+/* ---------- Floating APPLY (left center, slim tab) ---------- */
+.floating-apply{
+  position:fixed; left:10px; top:50%; transform:translateY(-50%) rotate(-90deg);
+  transform-origin:left bottom; z-index:1040;
+  padding:.35rem .7rem; border-radius:999px;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  font-weight:700;
+}
+.floating-apply .bi{ transform:rotate(90deg); }
+
+/* ---------- Mobile sticky CTA ---------- */
+.mobile-cta{
+  position:fixed; left:0; right:0; bottom:0; z-index:1030; display:none;
+  background:#fff; border-top:1px solid #e9edf3; box-shadow:0 -6px 14px rgba(0,0,0,.06);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1199.98px){
+  .navbar-brand .brand-logo,
+  .navbar-brand img{ height:58px; }
+}
+@media (max-width: 991.98px){
+  .mobile-cta{ display:flex; }
+  main{ padding-bottom:78px; }
+  .floating-apply{ left:8px; top:45%; }
+  .hero-video-wrap{ min-height:82vh; padding:140px 0 120px; }
+  .navbar-nav .nav-link{ font-size:1rem; }
+}
+@media (max-width: 575.98px){
+  .navbar-brand .brand-logo,
+  .navbar-brand img{ height:50px; }
+  .navbar-brand .brand-wordmark{ font-size:1.1rem; }
+  .navbar-nav .nav-link{ padding:.7rem .8rem; }
+}
