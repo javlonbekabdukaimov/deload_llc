@@ -362,6 +362,7 @@
         <div id="thanks" class="container" style="display:none;max-width:800px;">
           <div class="alert alert-success mt-3">Thanks! Your application was received.</div>
         </div>
+        <script>
 
         <!-- Right: apply form -->
         <div class="col-lg-7">
@@ -460,7 +461,7 @@
   // Year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
 
-    if (location.hash === "#thanks") {
+  if (location.hash === "#thanks") {
     const el = document.getElementById("thanks");
     if (el) el.style.display = "block";
   }
