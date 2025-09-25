@@ -471,7 +471,16 @@
         if (nav && nav.classList.contains('show')) { new bootstrap.Collapse(nav).hide(); }
       }
     });
-  });
+    });
+      (function () {
+      const f = document.getElementById('apply-form');
+      if (!f) return;
+      const hidden = document.createElement('input');
+      hidden.type = 'hidden';
+      hidden.name = '_page';
+      hidden.value = location.href;
+      f.appendChild(hidden);
+    })();
 </script>
 </body>
 </html>
