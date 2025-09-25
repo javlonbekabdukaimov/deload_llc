@@ -480,16 +480,19 @@
         if (nav && nav.classList.contains('show')) { new bootstrap.Collapse(nav).hide(); }
       }
     });
-    });
-      (function () {
-      const f = document.getElementById('apply-form');
-      if (!f) return;
-      const hidden = document.createElement('input');
-      hidden.type = 'hidden';
-      hidden.name = '_page';
-      hidden.value = location.href;
-      f.appendChild(hidden);
-    })();
+    
+    // Minimal UX only: disable button & show "Sending..." then let native POST happen
+    const form = document.getElementById('apply-form');
+    if (form) {
+      form.addEventListener('submit', () => {
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) {
+          btn.disabled = true;
+          btn.innerText = 'Sending...';
+        }
+        // IMPORTANT: no preventDefault here!
+      });
+    }
 </script>
 </body>
 </html>
