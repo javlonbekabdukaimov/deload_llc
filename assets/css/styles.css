@@ -151,6 +151,24 @@ body{
   background:var(--soft); color:var(--brand-blue);
   display:grid; place-items:center; font-size:1.2rem;
 }
+
+/* FAQ accordion centered + blue text only */
+.accordion-button {
+  font-weight: 600;
+  background: transparent;
+  padding: 1rem 0;
+}
+.accordion-button:focus {
+  box-shadow: none;
+}
+.accordion-button:not(.collapsed) {
+  color: #0d6efd;   /* only text blue */
+  background: transparent; /* no blue bg */
+}
+.accordion-body {
+  padding: .75rem 0 1rem;
+}
+
 /* Contact section polish */
 .contact-section .contact-card{ border:0; border-radius:20px; }
 .contact-section .social .social-pill{
